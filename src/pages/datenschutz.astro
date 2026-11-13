@@ -1,0 +1,52 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { site } from '../content/site';
+---
+<Legal title="Datenschutz" description="Datenschutzerklärung von Blue Olive: welche Daten beim Besuch dieser Website verarbeitet werden.">
+    <h2>Verantwortlicher</h2>
+    <p>
+      {site.owner}, {site.name}<br />
+      {site.street}, {site.zip} {site.city}<br />
+      E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a>
+    </p>
+
+    <h2>Kurz gesagt</h2>
+    <ul>
+      <li>Diese Website setzt keine Cookies und nutzt kein Tracking und keine Analyse-Dienste.</li>
+      <li>Schriften, Bilder und Skripte liegen auf dem eigenen Webspace. Es werden keine Inhalte von Drittanbietern nachgeladen.</li>
+      <li>Das Kontaktformular speichert nichts auf dieser Website. Es öffnet dein E-Mail-Programm.</li>
+    </ul>
+
+    <h2>Hosting und Server-Protokolle</h2>
+    <p>
+      Die Website liegt auf Webspace der IONOS SE, Elgendorfer Str. 57, 56410 Montabaur. Beim Aufruf verarbeitet der Server technisch
+      notwendige Daten: IP-Adresse, Datum und Uhrzeit, aufgerufene Datei, übertragene Datenmenge, Browser und Betriebssystem. Das ist
+      nötig, um die Seite auszuliefern und den Betrieb abzusichern (Art. 6 Abs. 1 lit. f DSGVO). Mit dem Hoster besteht ein Vertrag zur
+      Auftragsverarbeitung.
+    </p>
+
+    <h2>Kontaktaufnahme</h2>
+    <p>
+      Wenn du mir per E-Mail, Telefon oder WhatsApp schreibst, verarbeite ich deine Angaben, um die Anfrage zu beantworten
+      (Art. 6 Abs. 1 lit. b DSGVO). Bei WhatsApp gelten zusätzlich die Datenschutzbestimmungen des Anbieters WhatsApp Ireland Limited.
+      Ich lösche Anfragen, sobald sie erledigt sind und keine gesetzlichen Aufbewahrungspflichten bestehen.
+    </p>
+
+    <h2>Externe Links</h2>
+    <p>Diese Seite verlinkt auf eine Demo-Website unter higgsfield.app. Erst mit dem Klick werden Daten an den dortigen Anbieter übertragen.</p>
+
+    <h2>Deine Rechte</h2>
+    <p>
+      Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch.
+      Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, zum Beispiel beim Landesbeauftragten für den Datenschutz
+      und die Informationsfreiheit Baden-Württemberg.
+    </p>
+
+    <h2>Stand</h2>
+    <p>November 2026</p>
+
+    <h2>Anfrage-Formular</h2>
+    <p>Wenn du das Formular „Projekt anfragen“ absendest, verarbeite ich die eingegebenen Angaben (Name, Unternehmen, E-Mail-Adresse, Telefonnummer, Art der Website, bestehende Website, gewünschter Start, Nachricht), um deine Anfrage zu beantworten. Die Angaben werden mir per E-Mail zugestellt und zusätzlich als PDF auf dem Webserver bei IONOS abgelegt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen). Ich lösche die Daten, sobald sie für die Bearbeitung nicht mehr nötig sind und keine gesetzlichen Aufbewahrungspflichten bestehen.</p>
+    <h2>WhatsApp</h2>
+    <p>Über den WhatsApp-Knopf öffnest du einen Chat mit meiner Mobilnummer. Dabei gelten die Datenschutzbestimmungen von WhatsApp (WhatsApp Ireland Limited). Ich sehe deine Telefonnummer und deine Nachricht; beides nutze ich nur zur Beantwortung deiner Anfrage. Die Website selbst lädt dafür keine Inhalte von WhatsApp.</p>
+  </Legal>

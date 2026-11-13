@@ -1,0 +1,42 @@
+---
+import '../styles/fonts.css';
+import '../styles/site.css';
+import Overlays from '../components/Overlays.astro';
+import Anfrage from '../components/Anfrage.astro';
+
+const title = 'Blue Olive – Webdesign aus Ofterdingen';
+const description =
+  'Blue Olive baut Websites mit Glanz: Visitenkarte, One Pager, Landingpage, Portfolio, Unternehmens-Website und 3D-Scroll. Zuerst fürs Handy entworfen, gemessen vor dem Start.';
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#04061c" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/og.jpg" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href="https://blue-olive.online/" />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/archivo-latin-n.woff2" crossorigin />
+  </head>
+  <body>
+    <div class="rw" id="rw">
+      <a class="skip" href="#sorten">Zu den Website-Arten springen</a>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="cur" id="cur" aria-hidden="true"><i class="cur__dot"></i><span class="cur__label"></span></div>
+      <slot />
+      <Overlays />
+      <Anfrage />
+    </div>
+    <script>
+      import { initCore } from '../lib/roestwetter.js';
+      initCore();
+    </script>
+  </body>
+</html>

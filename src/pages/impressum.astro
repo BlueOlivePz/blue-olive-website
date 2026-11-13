@@ -1,0 +1,38 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { site } from '../content/site';
+---
+<Legal title="Impressum" description="Impressum von Blue Olive, Inhaber Panajotis Zekos, Ofterdingen.">
+    <h2>Angaben gemäß § 5 DDG</h2>
+    <p>
+      {site.name}<br />
+      Inhaber: {site.owner}<br />
+      {site.street}<br />
+      {site.zip} {site.city}<br />
+      {site.country}
+    </p>
+
+    <h2>Kontakt</h2>
+    <p>
+      Telefon: <a href={`tel:${site.phoneHref}`}>0173-3917 911</a><br />
+      E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a>
+    </p>
+
+    <h2>Umsatzsteuer</h2>
+    <p>Gemäß § 19 UStG wird keine Umsatzsteuer berechnet und ausgewiesen (Kleinunternehmerregelung).</p>
+
+    <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+    <p>{site.owner}, Anschrift wie oben.</p>
+
+    <h2>Verbraucherstreitbeilegung</h2>
+    <p>Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+    <h2>Haftung für Inhalte und Links</h2>
+    <p>
+      Die Inhalte dieser Seite wurden mit Sorgfalt erstellt. Für die Inhalte verlinkter fremder Seiten sind ausschließlich deren Betreiber
+      verantwortlich. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar.
+    </p>
+
+    <h2>Bildnachweis</h2>
+    <p>Die Bilder und der Film auf dieser Website wurden mit KI erzeugt. Logo: {site.name}.</p>
+  </Legal>

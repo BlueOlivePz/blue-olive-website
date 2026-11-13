@@ -1,0 +1,26 @@
+{
+  "name": "blue-olive",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "packageManager": "pnpm@12.18.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/svelte": "9.1.2",
+    "@threlte/core": "^8.7.0",
+    "astro": "7.4.8",
+    "svelte": "^5.57.3",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.187.0",
+    "typescript": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=22.23.4"
+  }
+}

@@ -1,0 +1,85 @@
+---
+// Anfrage-Fenster: öffnet sich über [data-anfrage-open] oder window.__anfrage(liste, email).
+// Sendet an /anfrage.php (E-Mail „Neue Anfrage“ mit PDF, Ablage auf dem Server).
+const arten = ['3D-Scroll-Website', 'Digitale Visitenkarte (Microsite)', 'Landingpage', 'Noch keine genaue Vorstellung', 'One Pager', 'Portfolio Website', 'Unternehmens Website'];
+const starts = ['Noch offen', 'So bald wie möglich', 'In 1 – 3 Monaten', 'Später'];
+---
+<dialog id="anfrage" class="dlg" aria-labelledby="anfrage-titel">
+  <div class="dlg__box">
+    <button type="button" class="dlg__x" data-anfrage-close aria-label="Fenster schließen">×</button>
+    <form class="dlg__form" action="/anfrage.php" method="post">
+      <p class="mono">Blue Olive</p>
+      <h2 id="anfrage-titel">Projekt anfragen</h2>
+      <p class="dlg__lede">Die Anfrage landet direkt in meinem Postfach. Felder mit * sind Pflichtfelder.</p>
+      <div class="dlg__grid">
+        <div><label for="a-name">Name *</label><input id="a-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="100" /></div>
+        <div><label for="a-firma">Unternehmen</label><input id="a-firma" name="firma" type="text" autocomplete="organization" maxlength="120" /></div>
+        <div><label for="a-email">E-Mail *</label><input id="a-email" name="email" type="email" autocomplete="email" required maxlength="200" /></div>
+        <div><label for="a-telefon">Telefon *</label><input id="a-telefon" name="telefon" type="tel" autocomplete="tel" required minlength="6" maxlength="40" /></div>
+        <div class="dlg__wide"><label for="a-art">Art der Website *</label>
+          <select id="a-art" name="projektart" required>
+            <option value="" selected disabled>Bitte wählen</option>
+            {arten.map((a) => <option value={a}>{a}</option>)}
+          </select></div>
+        <div class="dlg__wide"><label for="a-url">Bestehende Website (falls vorhanden)</label><input id="a-url" name="bestehende_seite" type="text" inputmode="url" placeholder="www.beispiel.de" maxlength="200" /></div>
+        <div class="dlg__wide"><label for="a-start">Gewünschter Start</label>
+          <select id="a-start" name="start">{starts.map((s) => <option value={s}>{s}</option>)}</select></div>
+        <div class="dlg__wide"><label for="a-nachricht">Worum geht es? *</label><textarea id="a-nachricht" name="nachricht" rows="4" required minlength="10" maxlength="5000"></textarea></div>
+      </div>
+      <div class="dlg__hp" aria-hidden="true"><label for="a-fax">Fax (bitte leer lassen)</label><input id="a-fax" name="kontakt_fax" type="text" tabindex="-1" autocomplete="off" /></div>
+      <p class="dlg__fine">Deine Angaben werden per E-Mail an info@blue-olive.online übermittelt, als PDF abgelegt und nur zur Beantwortung deiner Anfrage verwendet. Mehr dazu in der <a href="/datenschutz/">Datenschutzerklärung</a>.</p>
+      <button type="submit" class="btn btn--light dlg__send"><span>Projekt jetzt starten</span><i aria-hidden="true">→</i></button>
+    </form>
+  </div>
+</dialog>
+<script is:inline>
+  (() => {
+    const dlg = document.getElementById('anfrage');
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    const MAP = { Visitenkarte: 'Digitale Visitenkarte (Microsite)', 'One Pager': 'One Pager', Landingpage: 'Landingpage', Portfolio: 'Portfolio Website', Unternehmen: 'Unternehmens Website', '3D-Scroll': '3D-Scroll-Website' };
+    // liste: gemerkte Website-Arten oder ein Fahrplan-Text; email: aus der Fußzeile
+    window.__anfrage = (liste, email) => {
+      const art = dlg.querySelector('#a-art'), msg = dlg.querySelector('#a-nachricht');
+      if (Array.isArray(liste) && liste.length) {
+        const erste = Object.keys(MAP).find((k) => liste[0].startsWith(k));
+        if (erste && liste.length === 1) art.value = MAP[erste];
+        else if (liste.length > 1) art.value = 'Noch keine genaue Vorstellung';
+        if (!msg.value.trim()) msg.value = 'Ich interessiere mich für: ' + liste.join(', ') + '.\n\n';
+      }
+      if (email) dlg.querySelector('#a-email').value = email;
+      dlg.showModal();
+    };
+    document.addEventListener('click', (e) => {
+      const o = e.target.closest('[data-anfrage-open]');
+      if (o && !o.closest('#bag')) { e.preventDefault(); window.__anfrage(); }
+      else if (e.target.closest('[data-anfrage-close]') || e.target === dlg) dlg.close();
+    });
+  })();
+</script>
+<style is:global>
+  html:has(.dlg[open]){overflow:hidden}
+  .dlg{width:min(40rem,calc(100vw - 1.5rem));max-width:none;max-height:calc(100dvh - 1.5rem);margin:auto;padding:0;border:0;border-radius:18px;background:transparent;color:var(--cream);overflow:auto;overscroll-behavior:contain;z-index:400}
+  .dlg::backdrop{background:rgb(1 4 41/.74);backdrop-filter:blur(6px)}
+  .dlg[open]{animation:dlg-in .45s var(--e-fab) both}
+  @keyframes dlg-in{from{opacity:0;transform:translateY(22px) scale(.98)}}
+  .dlg__box{position:relative;isolation:isolate;overflow:hidden;padding:28px 20px 24px;border-radius:18px;background:linear-gradient(165deg,#1d275c 0%,#0d193b 45%,#010429 100%);box-shadow:inset 0 0 0 1px rgb(112 147 167/.55)}
+  .dlg__box::before{content:"";position:absolute;z-index:-1;top:50%;left:50%;width:min(78%,28rem);aspect-ratio:1;transform:translate(-50%,-50%);background:url(/logo-720.webp) center/contain no-repeat;opacity:.16;pointer-events:none}
+  .dlg__x{position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:50%;background:rgb(112 147 167/.18);color:var(--cream);font:400 24px/1 var(--f-m);cursor:pointer;border:0}
+  .dlg__form h2{font:800 clamp(38px,9vw,56px)/.9 var(--f-d);font-stretch:66%;text-transform:uppercase;margin:6px 0 10px}
+  .dlg__lede{font-size:15px;opacity:.85}
+  .dlg__grid{display:grid;gap:14px;margin-top:20px}
+  .dlg__form label{display:block;font:500 11px/1.4 var(--f-m);letter-spacing:.08em;text-transform:uppercase;color:var(--fog)}
+  .dlg__form input,.dlg__form select,.dlg__form textarea{display:block;width:100%;margin-top:6px;padding:12px 14px;border:0;border-radius:10px;background:rgb(1 4 41/.62);box-shadow:inset 0 0 0 1px rgb(112 147 167/.7);color:var(--cream);caret-color:var(--fog);font:400 16px/1.4 var(--f-s)}
+  .dlg__form input,.dlg__form select{min-height:48px}
+  .dlg__form textarea{resize:vertical}
+  .dlg__form select{appearance:none;padding-right:44px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23aac7d5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:18px}
+  .dlg__form option{background:#0d193b;color:#eff3f5}
+  .dlg__form ::placeholder{color:#7093a7;opacity:1}
+  .dlg__form input:focus-visible,.dlg__form select:focus-visible,.dlg__form textarea:focus-visible,.dlg__x:focus-visible{outline:2px solid var(--fog);outline-offset:2px}
+  .dlg__hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .dlg__fine{margin-top:14px;font-size:13px;line-height:1.5;color:var(--fog)}
+  .dlg__fine a{text-decoration:underline}
+  .dlg__send{width:100%;justify-content:center;margin-top:18px}
+  @media (min-width:640px){.dlg__box{padding:36px 36px 32px}.dlg__grid{grid-template-columns:1fr 1fr}.dlg__wide{grid-column:1/-1}}
+  @media (prefers-reduced-motion:reduce){.dlg[open]{animation:none}}
+</style>

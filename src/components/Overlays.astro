@@ -1,0 +1,16 @@
+---
+// Detailansicht, Merkzettel, mobile Tab-Leiste und Hinweis-Toast.
+---
+<div class="pdp" id="pdp" role="dialog" aria-modal="true" aria-label="Website-Art" hidden></div>
+<div class="scrim" id="scrim" hidden></div>
+<aside class="bag" id="bag" role="dialog" aria-modal="true" aria-label="Anfrage-Liste" hidden></aside>
+<nav class="tab" id="tab" aria-label="Schnellnavigation">
+<a href="#leine"><svg viewBox="0 0 24 24"><path d="M3 6h18M8 6v3l-2 9h6l-2-9V6M16 6v2l-1.5 7h5l-1.5-7"/></svg><span>Leine</span></a>
+<a href="#sorten"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg><span>Arten</span></a>
+<a href="#momente"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M10.5 9l4.5 3-4.5 3z"/></svg><span>Film</span></a>
+<a href="#barometer"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 12l4-5"/></svg><span>Kompass</span></a>
+<a href="#bruehraum"><svg viewBox="0 0 24 24"><path d="M5 9h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5zM16 10h2a2 2 0 0 1 0 5h-2M9 3v3M12 3v3"/></svg><span>Becher</span></a>
+<button id="tab-bag" aria-label="Anfrage-Liste öffnen"><svg viewBox="0 0 24 24"><path d="M7 4h10v17l-5-3.5L7 21z"/></svg><span>Liste</span><b id="tab-count"></b></button>
+</nav>
+<div class="toast mono" id="toast" role="status" aria-live="polite"></div>
+

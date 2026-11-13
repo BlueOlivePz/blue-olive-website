@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.svelte';
+import Manifest from '../components/Manifest.astro';
+import Leine from '../components/Leine.svelte';
+import Sorten from '../components/Sorten.svelte';
+import Momente from '../components/Momente.svelte';
+import Wetterlagen from '../components/Wetterlagen.svelte';
+import Barometer from '../components/Barometer.svelte';
+import Woche from '../components/Woche.svelte';
+import Bruehraum from '../components/Bruehraum.svelte';
+import Vorrat from '../components/Vorrat.svelte';
+import Weg from '../components/Weg.svelte';
+import Box from '../components/Box.svelte';
+---
+<Base>
+  <Header />
+  <main id="top">
+    <Hero client:load />
+    <Manifest />
+    <Leine client:load />
+    <Sorten client:load />
+    <Momente client:load />
+    <Wetterlagen client:load />
+    <Barometer client:load />
+    <Woche client:load />
+    <Bruehraum client:load />
+    <Vorrat client:load />
+    <Weg client:load />
+    <Box client:load />
+  </main>
+  <Footer />
+</Base>

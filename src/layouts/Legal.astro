@@ -1,0 +1,37 @@
+---
+// Schlichter Rahmen für Impressum und Datenschutz (ohne Animationen).
+import '../styles/fonts.css';
+interface Props { title: string; description: string }
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} – Blue Olive</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#04061c" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  </head>
+  <body>
+    <header class="lg-top"><a href="/"><img src="/logo-80.png" width="30" height="30" alt="" /><span>Blue Olive</span></a><a href="/">← Zur Startseite</a></header>
+    <main class="lg">
+      <h1>{title}</h1>
+      <slot />
+    </main>
+  </body>
+</html>
+<style is:global>
+  html{background:#04061c;color:#dfe0db;-webkit-text-size-adjust:100%}
+  body{margin:0;font:400 17px/1.6 "Fraunces",Georgia,serif}
+  .lg-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px clamp(16px,3.2vw,48px);border-bottom:1px solid rgb(160 160 158/.25);font:500 12px/1 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase}
+  .lg-top a{display:inline-flex;align-items:center;gap:10px;min-height:44px;color:#eff3f5;text-decoration:none}
+  .lg{max-width:44rem;margin:0 auto;padding:48px clamp(16px,3.2vw,48px) 96px}
+  .lg h1{font:800 clamp(48px,12vw,104px)/.86 "Archivo","Arial Narrow",sans-serif;font-stretch:66%;text-transform:uppercase;color:#eff3f5;margin:0 0 32px}
+  .lg h2{font:800 28px/1 "Archivo","Arial Narrow",sans-serif;font-stretch:70%;text-transform:uppercase;color:#eff3f5;margin:44px 0 12px}
+  .lg p,.lg ul{margin:0 0 16px}
+  .lg ul{padding-left:20px}
+  .lg a{color:#aac7d5;text-underline-offset:4px}
+  .lg a:focus-visible,.lg-top a:focus-visible{outline:2px solid #aac7d5;outline-offset:3px}
+</style>
